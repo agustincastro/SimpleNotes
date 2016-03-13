@@ -1,24 +1,32 @@
 <!doctype html>
 <html>
-  <head>
-    <title>Simple Notes</title>
-    <script src="popup.js"></script>
-
-    <!-- Le' CSS -->
-    <link rel="stylesheet" type="text/css" href="main.css">
-  </head>
-  <body>
-    <h1 class="title">Simple Notes!</h1>
+<head>
+	<title>Simple Notes</title>
+	<!-- Le' CSS -->
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+<body>
+	<h1 class="title">Simple Notes!</h1>
 
 
-    <button id="someAction">New note</button>
+	<button id="new-note">New note</button>
 
-  
 
-  </body>
+	<div id="notes-container">
+		<div id="note-template" class= "note invisible">
+
+
+		</div>
+
+	</div>
+	<!--Note template -->
+
+
+</body>
 </html>
 
 
 <!-- Le' Javascript -->
-<script type="text/javascript" src="simplenotes.js" async></script>
+<script type="text/javascript" src="javascript/jquery-2.2.1.min.js"></script>
+<script type="text/javascript" src="javascript/simplenotes.js" async></script>
 
