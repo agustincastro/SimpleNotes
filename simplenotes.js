@@ -5,9 +5,10 @@ var $notesContainer = $("#notes-container");
 
 
 
+//Create new note
 $newNoteButton.click(function(event){
-  var noteTemplate = $noteTemplate.html();
-  $(noteTemplate).toogleClass("invisible")
+  var noteTemplate = $noteTemplate.clone();
+  noteTemplate.removeClass("invisible");
   $notesContainer.append(noteTemplate);
   console.log("golazo!");
 });
@@ -15,7 +16,6 @@ $newNoteButton.click(function(event){
 
 
 //HELPERS
-
 function validateEmail(email) {
     var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(email);

@@ -16,8 +16,8 @@
 "content_scripts": [
     {
       "matches": ["http://www.google.com/*"],
-      "css": ["css/main.css"],
-      "js": ["javascript/jquery-2.2.1.min.js", "javascript/simplenotes.js"]
+      "css": ["main.css"],
+      "js": ["javascript/jquery-2.2.1.min.js", "simplenotes.js"]
     }
   ],
 
