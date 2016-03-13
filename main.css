@@ -1,6 +1,11 @@
-.title{
-	color: #F59D00;
-}
+.title{ color: #F59D00; }
+
+body{ background-color: #FFFFDE; }
+
+.header{ height: 65px; }
+
+
+/* Note Layout */
 
 .note{
 	background-color: #F2C500;
@@ -9,11 +14,13 @@
 	width: 200px;
 }
 
-#notes-container{
-
-}
-
 .invisible{
 	display: none;
 }
 
+.title-input{
+	background-color: #F2C500;
+	border:none;
+	margin-top: 10px;
+	margin-left: 10px;
+}
