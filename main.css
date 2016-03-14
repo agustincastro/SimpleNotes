@@ -5,6 +5,40 @@ body{ background-color: #FFFFDE; }
 .header{ height: 65px; }
 
 
+
+
+/* Buttons */
+
+.left-buttons{
+
+}
+
+
+#left-container button {
+    height: 30px;
+	width: 30px;
+	background-repeat: no-repeat;
+	border:none;
+	background-size: 100%;
+}
+
+#new-note{
+	background-image: url("images/new-note-icon.png");
+	background-color: transparent;
+}
+
+#new-checklist{
+	background-image: url("images/new-checklist-icon.png");
+	background-color: transparent;
+}
+
+#configuration{
+	background-image: url("images/gear-icon.png");
+	background-color: transparent;	
+	float: right;
+}
+
+
 /* Note Layout */
 
 .note{
