@@ -15,6 +15,11 @@ body{ background-color: #FFFFDE; }
 	background-size: 100%;
 }
 
+button:focus, input:focus, textarea:focus {
+    outline:none;
+    box-shadow:none;
+}
+
 #new-note{
 	background-image: url("images/new-note-icon.png");
 	background-color: transparent;
@@ -36,18 +41,68 @@ body{ background-color: #FFFFDE; }
 
 .note{
 	background-color: #F2C500;
-	margin-top: 10px;
+	margin-top: 15px;
+	margin-right: auto;
+	margin-left: auto;
 	height: 150px;
 	width: 200px;
+}
+
+#note-template button {
+	height: 24px;
+    width: 20px;
+    float: right;
+    margin-top: 5px;
+    margin-right: 5px;
+    background-repeat: no-repeat;
+    border: none;
+    background-size: 100%;
+}
+
+#delete-note{
+	background-image: url("images/delete-icon.png");
+	background-color: transparent;
 }
 
 .invisible{
 	display: none;
 }
 
-.title-input{
+.title-input, #note-template textarea{
 	background-color: #F2C500;
 	border:none;
 	margin-top: 10px;
 	margin-left: 10px;
+}
+
+.title-input{
+	width: 75%;
+}
+
+#note-template textarea{
+	height: 100px;
+	width: 80%;
+}
+
+
+/* GENERAL MISC */
+
+::-webkit-input-placeholder {
+   color: black;
+   font-style: italic;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   color: black;  
+   font-style: italic;
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   color: black;  
+   font-style: italic;
+}
+
+:-ms-input-placeholder {  
+   color: black;  
+   font-style: italic;
 }
