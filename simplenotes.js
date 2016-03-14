@@ -20,8 +20,11 @@ $newNoteButton.click(function(event){
 //Delete note
 function DeleteNote(event){
 	var html = $(event.target);
-	html.parent().remove();
-	
+	html.parent().slideUp(200, function()
+	{
+		$(this).remove();
+	});
+
 	//$notesContainer.
 	//TODO: Borrar la nota del storage y dsps hace el 
 	//borrado de html
