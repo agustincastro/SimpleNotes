@@ -17,7 +17,8 @@
    {
     "matches": ["http://www.google.com/*"],
     "css": ["main.css"],
-    "js": ["javascript/jquery-2.2.1.min.js", "simplenotes.js"]
+    "js": ["javascript/jquery-2.2.1.min.js", 
+          "simplenotes.js", "storage.js"]
   }
   ],
   "icons": { "16": "icon.png",

@@ -12,6 +12,7 @@
 	<div id="left-container">
 		<button id="new-note" title="New note"></button>
 		<button id="new-checklist" title="New checklist"></button>
+		<button id="reload" title="New reload"></button>
 		<button id="configuration" title ="Configuration"></button>
 	</div>
 	
@@ -22,21 +23,22 @@
 
 	<div id="notes-container">
 		<!--Base mote template -->
-		<div id="note-template" class= "note invisible">
-			<input type="text" class="title-input" placeholder="title..."></input>
+		<div id="note-template" class= "note invisible" data-id="">
+			<input id='note-title' type="text" class="title-input" placeholder="title..."></input>
 
 			<button id="delete-note" title ="Delete"></button>
 
-			<textarea placeholder="text..."></textarea>
+			<textarea id='note-text' placeholder="text..."></textarea>
 		</div>
 	</div>
 	
-	
+
 </body>
 </html>
 
 
 <!-- Le Javascript -->
 <script type="text/javascript" src="javascript/jquery-2.2.1.min.js"></script>
+<script type="text/javascript" src="storage.js" async></script>
 <script type="text/javascript" src="simplenotes.js" async></script>
 

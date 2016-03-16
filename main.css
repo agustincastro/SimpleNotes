@@ -30,6 +30,11 @@ button:focus, input:focus, textarea:focus {
 	background-color: transparent;
 }
 
+#reload{
+	background-image: url("images/reload-icon.png");
+	background-color: transparent;
+}
+
 #configuration{
 	background-image: url("images/gear-icon.png");
 	background-color: transparent;	
