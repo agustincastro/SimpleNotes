@@ -39,38 +39,105 @@ function validateEmail(email) {
 
 
 
-
 // CHROME STORAGE
 // refer to https://developer.chrome.com/extensions/storage
 
 
-//Generates random alphanumeric string to use as Id if notes
-function generateID() {
-    var d = new Date().getTime();
-    var uuid = 'xxxxxxxx'.replace(/[xy]/g,function(c) {
-        var r = (d + Math.random()*16)%16 | 0;
-        d = Math.floor(d/16);
-        return (c=='x' ? r : (r&0x7|0x8)).toString(16);
-    });
-    return uuid.toUpperCase();
+//var x= {'notes': [{"id1": {'title': 'mititulo', 'text': 'mitexto'}}, {"id2": {'title': 'mititulo2', 'text': 'mitexto2'}} ] };
+
+function storage()
+{
+	var notes;
+
+
+    //Generates random alphanumeric string to use as Id of notes
+    var generateID = function() {
+    	var d = new Date().getTime();
+    	var uuid = 'xxxxxxxx'.replace(/[xy]/g,function(c) {
+    		var r = (d + Math.random()*16)%16 | 0;
+    		d = Math.floor(d/16);
+    		return (c=='x' ? r : (r&0x7|0x8)).toString(16);
+    	});
+    	return uuid.toUpperCase();
+    };
+
+
+    //Private implementation of saveNote
+    var save_note = function(title, text) 
+    {
+    	var noteId = generateID();
+
+    	chrome.storage.sync.get('notes', function(data) {
+    		if($.isEmptyObject(data)){
+    			//set notes first value
+    			var noteData = {};
+    			noteData[noteId] = { 'title':title, 'text':text}
+    			chrome.storage.sync.set({'notes': [ noteData ] }, function() {
+    				console.log("First note created, id: " + noteId);
+    				return noteId;
+    			});
+    		}else{
+    			//already have notes array initialied
+    			var noteData = {};
+    			noteData[noteId] = { 'title':title, 'text':text}
+    			//merges two objects recursively
+    			$.extend(true, data.notes, [ noteData ] );
+
+    			chrome.storage.sync.set( data, function() {
+    				console.log("Note created, id: " + noteId);
+    				return noteId;
+    			});
+    		}
+    	});
+    };
+
+
+     //Private implementation of getNote
+     var get_note = function(noteId) 
+     {
+
+     	chrome.storage.sync.get('notes', function(data) {
+     		console.log("Note retrieved: "+ data['notes'][0][noteId]);
+     		return data['notes'][0][noteId];
+     	});
+     };
+
+
+    //public save note function
+    this.saveNote = function(title, text)
+    {
+    	try{
+    		if(title || text){
+    			return save_note(title, text);
+    		}
+    	}
+    	catch(err){
+    		console.log("Exception: save_note, Error: "+ err);
+    	};
+    	return "";
+    };
+
+
+    //public get note function
+    this.getNote = function(noteId)
+    {
+    	try{
+    		if(noteId && noteId.length == 8){
+    			return get_note(noteId);
+    		}
+    	}
+    	catch(err){
+    		console.log("Exception: get_note, Error: "+ err);
+    	};
+    	console.log("Error: getNote invalid noteId: "+ noteId);
+    	return "";
+    };
+
+
 };
 
 
-function saveChanges() {
-        // Get a value saved in a form.
-        var theValue = textarea.value;
-        // Check that there's some code there.
-        if (!theValue) {
-        	message('Error: No value specified');
-        	return;
-        }
-        // Save it using the Chrome extension storage API.
-        chrome.storage.sync.set({'value': theValue}, function() {
-          // Notify that we saved.
-          message('Settings saved');
-      });
-    };
-
+var s = new storage();   // to ease testing
 
 
 
