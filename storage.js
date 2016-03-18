@@ -93,11 +93,12 @@ function storage()
      };
 
      //Private implementation of getAllNotes
-     var get_all_notes = function() 
+     var get_all_notes = function(callbackFunction) 
      {
      	chrome.storage.sync.get('notes', function(data) {
-     		console.log("Notes retrieved: "+ data['notes'][0]);
-     		return data['notes'][0];
+
+            var ret = data['notes'][0];
+            callbackFunction(ret);
         });
      };
 
@@ -105,6 +106,10 @@ function storage()
 
 
     //  ----- EXPOSED FUNCTIONS FOR DATA ACCESS LOGIC  ------
+
+    this.holaMundo = function(){
+        return 'Hola mundo';
+    }
 
     //public save note function
     this.saveNote = function(title, text)
@@ -138,10 +143,10 @@ function storage()
     
 
     //public get all notes function
-    this.getAllNotes = function()
+    this.getAllNotes = function(callbackFunction)
     {
     	try{
-    		return get_all_notes();
+            get_all_notes(callbackFunction);
     	}
     	catch(err){
     		console.log("Exception: get_all_notes, Error: "+ err);
@@ -164,9 +169,9 @@ function storage()
         return "";
     };
 
-    this.holaMundo = function(){
-        return 'Hola mundo';
-    }
+
+
+ 
 
 
 };

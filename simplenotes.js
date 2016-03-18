@@ -32,27 +32,33 @@ var storage = new storage();   // to ease testing
 // 	});
 // });
 
+function ping(){
+	storage.holaMundo();
+}
+
 
 $reloadButton.click(function(event){
 
-		var hi = storage.holaMundo();
+	storage.getAllNotes(function(storedNotes){
 
-		var storedNotes = storage.getAllNotes();
+		//Callback
 		$.each(storedNotes, function(k, v) {
-		var noteTemplate = $noteTemplate.clone();
-		noteTemplate.removeClass("invisible");
-		noteTemplate.find("#delete-note").on("click", DeleteNote);
+			var noteTemplate = $noteTemplate.clone();
+			noteTemplate.removeClass("invisible");
+			noteTemplate.find("#delete-note").on("click", DeleteNote);
 
-		var noteId = k;
-		var notes = v;
+			var noteId = k;
+			var note = v;
 
-		if(noteId && noteId.length == 8){
-			noteTemplate.attr('data-id', noteId);
-		}
-		$notesContainer.find('#note-title').html(notes['title']);
-		$notesContainer.find('#note-text').html(notes['text']);
+			if(noteId && noteId.length == 8){
+				noteTemplate.attr('data-id', noteId);
+			}
+			noteTemplate.find('#note-title').val(note['title']);
+			noteTemplate.find('#note-text').val(note['text']);
 
-		$notesContainer.append(noteTemplate);
+			$notesContainer.append(noteTemplate);
+		});
+
 	});
 
 });
@@ -60,6 +66,10 @@ $reloadButton.click(function(event){
 
 //Create new note
 $newNoteButton.click(function(event){
+
+	//Acordarse de poner un loader !!! 
+	// http://preloaders.net/
+
 	var noteTemplate = $noteTemplate.clone();
 	noteTemplate.removeClass("invisible");
 	noteTemplate.find("#delete-note").on("click", DeleteNote);
