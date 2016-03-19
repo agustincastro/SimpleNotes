@@ -4,6 +4,7 @@ var $newNoteButton = $("#new-note");
 var $noteTemplate = $("#note-template");
 var $reloadButton = $("#reload");
 var $removeAllButton = $("#remove-all");
+var $quoteContainer = $("#quote-container");
 
 var $notesContainer = $("#notes-container");
 
@@ -26,6 +27,14 @@ function assignActions(reciever, type){
 		console.log('c est fini');
 	}
 
+};
+
+
+//Get new quote
+function refreshQuote(){
+	var randomQuote = getQuote();
+	$quoteContainer.find("p").text(randomQuote['quote']);
+	$quoteContainer.find("label").text(randomQuote['author']);
 };
 
 
@@ -84,6 +93,7 @@ function DeleteNote(event){
 //Load up notes and settings
 $(function() {
 	refreshNotes();
+	refreshQuote();
 });
 
 //Reloads all notes .... agrega loader

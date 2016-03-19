@@ -18,6 +18,7 @@
     "matches": ["http://www.google.com/*"],
     "css": ["main.css", "styles/vex-theme-os.css", "styles/vex.css"],
     "js": ["scripts/jquery-2.2.1.min.js","scripts/vex.combined.min.js", 
+          "scripts/quotes.js", 
           "simplenotes.js", "storage.js"]
   }
   ],

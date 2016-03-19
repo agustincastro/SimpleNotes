@@ -1,6 +1,9 @@
 .title{ color: #F59D00; }
 
-body{ background-color: #FFFFDE; }
+body{ 
+	background-color: #FFFFDE; 
+	width: 350px;
+}
 
 .header{ height: 65px; }
 
@@ -93,6 +96,21 @@ button:focus, input:focus, textarea:focus {
 	height: 100px;
 	width: 80%;
 }
+
+
+/* Quotes */
+
+#quote-container p{
+	padding: 5px;
+    font-family: sans-serif;
+    text-align: justify;
+}
+
+#quote-container label{
+	font-style: italic;
+}
+
+
 
 
 /* GENERAL MISC */
