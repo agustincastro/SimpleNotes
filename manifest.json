@@ -16,8 +16,8 @@
    "content_scripts": [
    {
     "matches": ["http://www.google.com/*"],
-    "css": ["main.css"],
-    "js": ["javascript/jquery-2.2.1.min.js", 
+    "css": ["main.css", "styles/vex-theme-os.css", "styles/vex.css"],
+    "js": ["scripts/jquery-2.2.1.min.js","scripts/vex.combined.min.js", 
           "simplenotes.js", "storage.js"]
   }
   ],

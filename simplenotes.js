@@ -3,10 +3,12 @@
 var $newNoteButton = $("#new-note");
 var $noteTemplate = $("#note-template");
 var $reloadButton = $("#reload");
+var $removeAllButton = $("#remove-all");
 
 var $notesContainer = $("#notes-container");
 
 var storage = new storage();   // to ease testing
+vex.defaultOptions.className = 'vex-theme-os'; // Initializes vex theme
 
 
 function ping(){
@@ -64,6 +66,20 @@ function textChanged(event){
 };
 
 
+//Delete note
+function DeleteNote(event){
+	var html = $(event.target);
+	var noteId = html.parent().attr('data-id');	
+
+	storage.removeNote(noteId, function(){
+		html.parent().slideUp(200, function()
+		{
+			$(this).remove();
+		});
+	});
+};
+
+
 //Document.ready shorthand
 //Load up notes and settings
 $(function() {
@@ -72,9 +88,9 @@ $(function() {
 
 //Reloads all notes .... agrega loader
 $reloadButton.click(function(event){
+	$notesContainer.empty();
 	refreshNotes();
 });
-
 
 //Create new note
 $newNoteButton.click(function(event){
@@ -92,20 +108,27 @@ $newNoteButton.click(function(event){
 	});
 });
 
-
-
-//Delete note
-function DeleteNote(event){
-	var html = $(event.target);
-	var noteId = html.parent().attr('data-id');	
-
-	storage.removeNote(noteId, function(){
-		html.parent().slideUp(200, function()
-		{
-			$(this).remove();
-		});
+// Delete all notes
+$removeAllButton.click(function(){
+	//Banzaiii
+	vex.dialog.confirm({
+		message: 'Are you sure you want to delete all notes?',
+		callback: function(value) {
+			if(value){
+				storage.removeAllNotes(function(result){
+					//verificar result y hacer alguna animacion
+					$notesContainer.empty();
+					refreshNotes();	
+				});
+			}
+		}
 	});
-};
+
+});
+
+
+
+
 
 
 //HELPERS

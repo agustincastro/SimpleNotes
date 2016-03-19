@@ -41,6 +41,11 @@ button:focus, input:focus, textarea:focus {
 	float: right;
 }
 
+#remove-all{
+	background-image: url("images/bin-icon.png");
+	background-color: transparent;
+}
+
 
 /* Note Layout */
 

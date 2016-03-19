@@ -4,6 +4,8 @@
 	<title>Simple Notes</title>
 	<!-- Le styles -->
 	<link rel="stylesheet" type="text/css" href="main.css">
+	<link rel="stylesheet" href="styles/vex.css" />
+	<link rel="stylesheet" href="styles/vex-theme-os.css" />
 </head>
 <body>
 	<div> <img class="header" src="images/header.png" alt="Simple notes"> </div>
@@ -12,25 +14,25 @@
 	<div id="left-container">
 		<button id="new-note" title="New note"></button>
 		<button id="new-checklist" title="New checklist"></button>
-		<button id="reload" title="New reload"></button>
+		<button id="reload" title="Reload"></button>
+		<button id="remove-all" title="Remove all"></button>
 		<button id="configuration" title ="Configuration"></button>
 	</div>
 	
-<!-- TODO: Implementar timer -->
-<!-- TODO: Implementar checklist -->
-<!-- TODO: Implementar persistencia -->
+	<!-- TODO: Implementar timer -->
+	<!-- TODO: Implementar checklist -->
+	
+	<!--Base mote template -->
+	<div id="note-template" class= "note invisible" data-id="">
+		<input id='note-title' type="text" class="title-input" placeholder="title..."></input>
 
+		<button id="delete-note" title ="Delete"></button>
 
-	<div id="notes-container">
-		<!--Base mote template -->
-		<div id="note-template" class= "note invisible" data-id="">
-			<input id='note-title' type="text" class="title-input" placeholder="title..."></input>
-
-			<button id="delete-note" title ="Delete"></button>
-
-			<textarea id='note-text' placeholder="text..."></textarea>
-		</div>
+		<textarea id='note-text' placeholder="text..."></textarea>
 	</div>
+
+
+	<div id="notes-container"></div>
 	
 
 </body>
@@ -38,7 +40,8 @@
 
 
 <!-- Le Javascript -->
-<script type="text/javascript" src="javascript/jquery-2.2.1.min.js"></script>
+<script type="text/javascript" src="scripts/jquery-2.2.1.min.js"></script>
+<script type="text/javascript" src="scripts/vex.combined.min.js"></script>
 <script type="text/javascript" src="storage.js" async></script>
 <script type="text/javascript" src="simplenotes.js" async></script>
 

@@ -91,6 +91,20 @@ function storage(){
     };    
 
 
+    //Private implementation of removeAllNotes
+    var remove_all_notes = function(callbackFunction){
+        chrome.storage.sync.get('notes', function(data) {
+            if(!$.isEmptyObject(data)){
+                //deletes the note
+                delete data['notes'][0];
+                chrome.storage.sync.set( data, function() {
+                    console.log("All notes removed");
+                    callbackFunction();
+                });
+            }
+        });
+    };   
+
 
      //Private implementation of getNote
      var get_note = function(noteId){
@@ -172,6 +186,15 @@ function storage(){
             if(noteId && noteId.length == 8){
                 remove_note(noteId, callbackFunction);
             }
+        }
+        catch(err){
+          console.log("Exception: remove_note, Error: "+ err);
+        };
+    };
+
+    this.removeAllNotes = function(callbackFunction){
+        try{
+            remove_all_notes(callbackFunction);
         }
         catch(err){
           console.log("Exception: remove_note, Error: "+ err);
