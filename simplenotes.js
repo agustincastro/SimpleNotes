@@ -33,7 +33,7 @@ function assignActions(reciever, type){
 //Get new quote
 function refreshQuote(){
 	var randomQuote = getQuote();
-	$quoteContainer.find("p").text(randomQuote['quote']);
+	$quoteContainer.find("p").text('"'+randomQuote['quote']+'"');
 	$quoteContainer.find("label").text(randomQuote['author']);
 };
 

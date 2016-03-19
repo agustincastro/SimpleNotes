@@ -1,6 +1,9 @@
 
 
 // Inspirational Quotes    .... Inhumane copy paste of quotes found online... lots of hours
+
+// Remember to set meta tag to charset UTF-8 in order to render apostrophes and other problematic chars correctly
+
 var Quotes = {
 	1 : {quote: "Life is about making an impact, not making an income", author: "Kevin Kruse"}, 
 	2 : {quote: "Whatever the mind of man can conceive and believe, it can achieve.", author: "Napoleon Hill"}, 
@@ -105,7 +108,6 @@ var Quotes = {
 	101 : {quote: "The only way to do great work is to love what you do.", author: "Steve Jobs"},
 	102 : {quote: "If you can dream it, you can achieve it.", author: "Zig Ziglar"}
 };
-
 
 
  // Returns a random integer between min (inclusive) and max (inclusive)

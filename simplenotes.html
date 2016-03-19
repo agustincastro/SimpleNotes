@@ -2,21 +2,30 @@
 <html>
 <head>
 	<title>Simple Notes</title>
+
+	<meta charset="UTF-8" >
+	
 	<!-- Le styles -->
 	<link rel="stylesheet" type="text/css" href="main.css">
 	<link rel="stylesheet" href="styles/vex.css" />
 	<link rel="stylesheet" href="styles/vex-theme-os.css" />
+
+
 </head>
 <body>
-	<div> <img class="header" src="images/header.png" alt="Simple notes"> </div>
+	<div class="header " style= 'position:fixed'>
+		<div> <img class="logo" src="images/header.png" alt="Simple notes"> </div>
 
+		<div id="left-container">
+			<button id="new-note" title="New note"></button>
+			<!-- <button id="new-checklist" title="New checklist"></button> -->
+			<button id="reload" title="Reload"></button>
+			<button id="remove-all" title="Remove all"></button>
+			<button id="configuration" title ="Configuration"></button>
+		</div>
+	<!-- 
+	<hr> -->
 
-	<div id="left-container">
-		<button id="new-note" title="New note"></button>
-		<button id="new-checklist" title="New checklist"></button>
-		<button id="reload" title="Reload"></button>
-		<button id="remove-all" title="Remove all"></button>
-		<button id="configuration" title ="Configuration"></button>
 	</div>
 	
 	<!-- TODO: Implementar timer -->
@@ -38,7 +47,7 @@
 	<div id="quote-container">
 		
 		<p></p>
-		
+
 		<label></label>
 
 	</div>

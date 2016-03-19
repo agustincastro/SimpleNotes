@@ -5,10 +5,18 @@ body{
 	width: 350px;
 }
 
-.header{ height: 65px; }
+.logo{ height: 65px; }
 
 
 /* Buttons */
+
+.header{
+	position: fixed;
+    top: 0;
+    background-color: #FFFFDE;
+    width: 95%;
+    height: 110px;
+}
 
 #left-container button {
     height: 30px;
@@ -52,13 +60,17 @@ button:focus, input:focus, textarea:focus {
 
 /* Note Layout */
 
+#notes-container{
+	margin-top: 115px;
+}
+
 .note{
 	background-color: #F2C500;
 	margin-top: 15px;
 	margin-right: auto;
 	margin-left: auto;
 	height: 150px;
-	width: 200px;
+	width: 250px;
 }
 
 #note-template button {
@@ -104,13 +116,24 @@ button:focus, input:focus, textarea:focus {
 	padding: 5px;
     font-family: sans-serif;
     text-align: justify;
+    font-size: small;
 }
 
 #quote-container label{
 	font-style: italic;
+	display: block;
+	text-align: right;
 }
 
 
+
+/*  Vex dialogs */
+
+.vex-content{
+	width: 300px !important;
+	margin-left: auto !important;
+	margin-right: auto !important;
+}
 
 
 /* GENERAL MISC */
