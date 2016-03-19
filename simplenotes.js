@@ -9,43 +9,34 @@ var $notesContainer = $("#notes-container");
 var storage = new storage();   // to ease testing
 
 
-//Document.ready shorthand
-//Load up notes and settings
-// $(function() {
-
-// 	var storedNotes = storage.getAllNotes();
-// 	$.each(storedNotes, function(k, v) {
-// 		var noteTemplate = $noteTemplate.clone();
-// 		noteTemplate.removeClass("invisible");
-// 		noteTemplate.find("#delete-note").on("click", DeleteNote);
-
-// 		var noteId = k;
-// 		var notes = v;
-
-// 		if(noteId && noteId.length == 8){
-// 			noteTemplate.attr('data-id', noteId);
-// 		}
-// 		$notesContainer.find('#note-title').html(notes['title']);
-// 		$notesContainer.find('#note-text').html(notes['text']);
-
-// 		$notesContainer.append(noteTemplate);
-// 	});
-// });
-
 function ping(){
 	storage.holaMundo();
 }
 
 
-$reloadButton.click(function(event){
+// Sets the interactions of the different types of notes
+function assignActions(reciever, type){
+	if(type == 'note'){
+		reciever.find("#delete-note").on("click", DeleteNote);
+		reciever.find("#note-title").bind("keyup change", textChanged);
+		reciever.find("#note-text").bind("keyup change", textChanged);
+	}else{
+		console.log('c est fini');
+	}
 
+};
+
+
+//Renders all notes stored in chrome storage
+function refreshNotes(){
 	storage.getAllNotes(function(storedNotes){
 
 		//Callback
 		$.each(storedNotes, function(k, v) {
 			var noteTemplate = $noteTemplate.clone();
 			noteTemplate.removeClass("invisible");
-			noteTemplate.find("#delete-note").on("click", DeleteNote);
+			//Set actions
+			assignActions(noteTemplate, 'note');
 
 			var noteId = k;
 			var note = v;
@@ -60,42 +51,60 @@ $reloadButton.click(function(event){
 		});
 
 	});
+};
 
+//Update text of note
+function textChanged(event){
+	var html = $(event.target);
+	var noteId = html.parent().attr('data-id'); 
+	var text = html.parent().find('#note-text').val();
+	var title = html.parent().find('#note-title').val();
+
+	storage.updateNote(noteId, title, text); 
+};
+
+
+//Document.ready shorthand
+//Load up notes and settings
+$(function() {
+	refreshNotes();
+});
+
+//Reloads all notes .... agrega loader
+$reloadButton.click(function(event){
+	refreshNotes();
 });
 
 
 //Create new note
 $newNoteButton.click(function(event){
-
-	//Acordarse de poner un loader !!! 
-	// http://preloaders.net/
-
 	var noteTemplate = $noteTemplate.clone();
 	noteTemplate.removeClass("invisible");
-	noteTemplate.find("#delete-note").on("click", DeleteNote);
 
-	var noteId = storage.saveNote('', '');
+	//Set actions
+	assignActions(noteTemplate, 'note');
 
-	if(noteId && noteId.length == 8){
-		noteTemplate.attr('data-id', noteId);
-	}
-
-	$notesContainer.append(noteTemplate);
-
+	storage.saveNote('', '', function(noteId){
+		if(noteId && noteId.length == 8){
+			noteTemplate.attr('data-id', noteId);
+			$notesContainer.append(noteTemplate);
+		}
+	});
 });
+
 
 
 //Delete note
 function DeleteNote(event){
 	var html = $(event.target);
-	html.parent().slideUp(200, function()
-	{
-		$(this).remove();
-	});
+	var noteId = html.parent().attr('data-id');	
 
-	//$notesContainer.
-	//TODO: Borrar la nota del storage y dsps hace el 
-	//borrado de html
+	storage.removeNote(noteId, function(){
+		html.parent().slideUp(200, function()
+		{
+			$(this).remove();
+		});
+	});
 };
 
 

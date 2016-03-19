@@ -3,10 +3,7 @@
 
 //var x= {'notes': [{"id1": {'title': 'mititulo', 'text': 'mitexto'}}, {"id2": {'title': 'mititulo2', 'text': 'mitexto2'}} ] };
 
-function storage()
-{
-	var notes;
-
+function storage(){
 
     //Generates random alphanumeric string to use as Id of notes
     var generateID = function() {
@@ -23,8 +20,7 @@ function storage()
     //  ----- CONCRETE IMPLEMENTARIONS FOR DATA ACCESS LOGIC  ------
 
     //Private implementation of saveNote
-    var save_note = function(title, text) 
-    {
+    var save_note = function(title, text, callbackFunction){
     	var noteId = generateID();
 
     	chrome.storage.sync.get('notes', function(data) {
@@ -34,7 +30,7 @@ function storage()
     			noteData[noteId] = { 'title':title, 'text':text}
     			chrome.storage.sync.set({'notes': [ noteData ] }, function() {
     				console.log("First note created, id: " + noteId);
-    				return noteId;
+                    callbackFunction(noteId);
     			});
     		}else{
     			//already have notes array initialied
@@ -45,7 +41,7 @@ function storage()
 
     			chrome.storage.sync.set( data, function() {
     				console.log("Note created, id: " + noteId);
-    				return noteId;
+    				callbackFunction(noteId);
     			});
     		}
     	});
@@ -53,8 +49,7 @@ function storage()
 
 
     //Private implementation of updateNote
-    var update_note = function(noteId, title, text) 
-    {
+    var update_note = function(noteId, title, text){
         chrome.storage.sync.get('notes', function(data) {
             if($.isEmptyObject(data)){
                 //set notes first value
@@ -81,11 +76,24 @@ function storage()
         });
     };
 
+    //Private implementation of removeNote
+    var remove_note = function(noteId, callbackFunction){
+        chrome.storage.sync.get('notes', function(data) {
+            if(!$.isEmptyObject(data)){
+                //deletes the note
+                delete data['notes'][0][noteId];
+                chrome.storage.sync.set( data, function() {
+                    console.log("Note deleted, id: " + noteId);
+                    callbackFunction();
+                });
+            }
+        });
+    };    
+
+
 
      //Private implementation of getNote
-     var get_note = function(noteId) 
-     {
-
+     var get_note = function(noteId){
      	chrome.storage.sync.get('notes', function(data) {
      		console.log("Note retrieved: "+ data['notes'][0][noteId]);
      		return data['notes'][0][noteId];
@@ -93,10 +101,8 @@ function storage()
      };
 
      //Private implementation of getAllNotes
-     var get_all_notes = function(callbackFunction) 
-     {
+     var get_all_notes = function(callbackFunction) {
      	chrome.storage.sync.get('notes', function(data) {
-
             var ret = data['notes'][0];
             callbackFunction(ret);
         });
@@ -112,23 +118,18 @@ function storage()
     }
 
     //public save note function
-    this.saveNote = function(title, text)
-    {
+    this.saveNote = function(title, text, callbackFunction){
     	try{
-    		if(title || text){
-    			return save_note(title, text);
-    		}
+    		save_note(title, text, callbackFunction);
     	}
     	catch(err){
     		console.log("Exception: save_note, Error: "+ err);
     	};
-    	return "";
     };
 
 
     //public get note function
-    this.getNote = function(noteId)
-    {
+    this.getNote = function(noteId){
     	try{
     		if(noteId && noteId.length == 8){
     			return get_note(noteId);
@@ -143,35 +144,41 @@ function storage()
     
 
     //public get all notes function
-    this.getAllNotes = function(callbackFunction)
-    {
+    this.getAllNotes = function(callbackFunction){
     	try{
             get_all_notes(callbackFunction);
-    	}
-    	catch(err){
-    		console.log("Exception: get_all_notes, Error: "+ err);
-    	};
-    	return "";
+        }
+        catch(err){
+          console.log("Exception: get_all_notes, Error: "+ err);
+      };
     };
 
 
-        this.updateNote = function(noteId, title, text)
-    {
+    this.updateNote = function(noteId, title, text){
         try{
             if((noteId && noteId.length == 8) && (title || text)) {
                 return update_note(noteId, title, text);
             }
-        }
+        }   
         catch(err){
             console.log("Exception: get_note, Error: "+ err);
         };
         console.log("Error: getNote invalid noteId: "+ noteId);
-        return "";
     };
 
 
+    this.removeNote = function(noteId, callbackFunction){
+        try{
+            if(noteId && noteId.length == 8){
+                remove_note(noteId, callbackFunction);
+            }
+        }
+        catch(err){
+          console.log("Exception: remove_note, Error: "+ err);
+        };
+    };
 
- 
+
 
 
 };
