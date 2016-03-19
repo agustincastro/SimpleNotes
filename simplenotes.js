@@ -1,7 +1,9 @@
 
 //Jquery DOM variables for commonly used nodes, more performant
 var $newNoteButton = $("#new-note");
+var $newCheckButton = $("#new-checklist");
 var $noteTemplate = $("#note-template");
+var $checklistTemplate = $("#checklist-template");
 var $reloadButton = $("#reload");
 var $removeAllButton = $("#remove-all");
 var $quoteContainer = $("#quote-container");
@@ -136,7 +138,21 @@ $removeAllButton.click(function(){
 
 });
 
+//Create new Checklist
+$newCheckButton.click(function(event){
+	var checkListTemplate = $checklistTemplate.clone();
+	checkListTemplate.removeClass("invisible");
+	$notesContainer.append(checkListTemplate);
+	//Set actions
+	//assignActions(noteTemplate, 'note');
 
+	// storage.saveNote('', '', function(noteId){
+	// 	if(noteId && noteId.length == 8){
+	// 		noteTemplate.attr('data-id', noteId);
+	// 		$notesContainer.append(noteTemplate);
+	// 	}
+	// });
+});
 
 
 

@@ -91,7 +91,7 @@ button:focus, input:focus, textarea:focus {
 }
 
 #note-template:hover button{
- visibility:visible;
+	visibility:visible;
 }
 
 #delete-note{
@@ -116,9 +116,31 @@ button:focus, input:focus, textarea:focus {
 
 #note-template textarea{
 	height: 100px;
-	width: 80%;
+	width: 90%;
 }
 
+
+/* Checklist Layout*/
+
+.checklist{
+	background-color: #EEEEEE;
+	margin-top: 15px;
+	margin-right: auto;
+	margin-left: auto;
+	
+	width: 250px;
+}
+
+#checklist-template .check-input{
+	margin-left: 10px;
+}
+
+.check-title{
+	background-color: #EEEEEE;
+	border:none;
+	margin-top: 10px;
+	margin-left: 10px;
+}
 
 /* Quotes */
 

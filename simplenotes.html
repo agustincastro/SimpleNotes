@@ -18,7 +18,7 @@
 
 		<div id="left-container">
 			<button id="new-note" title="New note"></button>
-			<!-- <button id="new-checklist" title="New checklist"></button> -->
+			<button id="new-checklist" title="New checklist"></button>
 			<button id="reload" title="Reload"></button>
 			<button id="remove-all" title="Remove all"></button>
 			<button id="configuration" title ="Configuration"></button>
@@ -26,31 +26,38 @@
 	<!-- 
 	<hr> -->
 
-	</div>
-	
-	<!-- TODO: Implementar timer -->
-	<!-- TODO: Implementar checklist -->
-	
-	<!--Base mote template -->
-	<div id="note-template" class= "note invisible" data-id="">
-		<input id='note-title' type="text" class="title-input" placeholder="title..."></input>
+</div>
 
-		<button id="delete-note" title ="Delete"></button>
+<!-- TODO: Implementar timer -->
+<!-- TODO: Implementar checklist -->
 
-		<textarea id='note-text' placeholder="text..."></textarea>
-	</div>
+<!--Base mote template -->
+<div id="note-template" class= "note invisible" data-id="">
+
+	<input id='note-title' type="text" class="title-input" placeholder="title..."></input>
+	<button id="delete-note" title ="Delete"></button>
+	<textarea id='note-text' placeholder="text..."></textarea>
+</div>
+
+<!-- Base Checklist template -->
+<div id="checklist-template" class= "checklist invisible" data-id="">
+	<input type="checkbox" class="check-input"></input>
+	<input id='check-title' type="text" class="check-title" placeholder="To-do"></input>
+	<div>...</div>
+	<!-- <button id="delete-note" title ="Delete"></button> -->
+</div>
 
 
-	<div id="notes-container"></div>
-	
+<div id="notes-container"></div>
 
-	<div id="quote-container">
-		
-		<p></p>
 
-		<label></label>
+<div id="quote-container">
 
-	</div>
+	<p></p>
+
+	<label></label>
+
+</div>
 
 </body>
 </html>
