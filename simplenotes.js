@@ -25,6 +25,9 @@ function assignActions(reciever, type){
 		reciever.find("#delete-note").on("click", DeleteNote);
 		reciever.find("#note-title").bind("keyup change", textChanged);
 		reciever.find("#note-text").bind("keyup change", textChanged);
+	
+	}else if(type == 'checklist'){
+		reciever.find("#new-check").on("click", addCheck);
 	}else{
 		console.log('c est fini');
 	}
@@ -91,6 +94,14 @@ function DeleteNote(event){
 };
 
 
+// Create new check in checklist
+function addCheck(event){
+	var check = $checklistTemplate.find('#check-container').clone();
+	var html = $(event.target).parent();
+	html.find('#checklist-contaimer').append(check);
+};
+
+
 //Document.ready shorthand
 //Load up notes and settings
 $(function() {
@@ -142,10 +153,9 @@ $removeAllButton.click(function(){
 $newCheckButton.click(function(event){
 	var checkListTemplate = $checklistTemplate.clone();
 	checkListTemplate.removeClass("invisible");
-	$notesContainer.append(checkListTemplate);
 	//Set actions
-	//assignActions(noteTemplate, 'note');
-
+	assignActions(checkListTemplate, 'checklist');
+	$notesContainer.append(checkListTemplate);
 	// storage.saveNote('', '', function(noteId){
 	// 	if(noteId && noteId.length == 8){
 	// 		noteTemplate.attr('data-id', noteId);

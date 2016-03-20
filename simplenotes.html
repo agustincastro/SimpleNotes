@@ -29,7 +29,6 @@
 </div>
 
 <!-- TODO: Implementar timer -->
-<!-- TODO: Implementar checklist -->
 
 <!--Base mote template -->
 <div id="note-template" class= "note invisible" data-id="">
@@ -41,9 +40,14 @@
 
 <!-- Base Checklist template -->
 <div id="checklist-template" class= "checklist invisible" data-id="">
-	<input type="checkbox" class="check-input"></input>
-	<input id='check-title' type="text" class="check-title" placeholder="To-do"></input>
-	<div>...</div>
+	<div id="checklist-contaimer">
+		<div id="check-container">
+			<input type="checkbox" class="check-input"></input>
+			<input id='check-title' type="text" class="check-title" placeholder="To-do"></input>
+		</div>
+	</div>
+	
+	<div id="new-check"></div>
 	<!-- <button id="delete-note" title ="Delete"></button> -->
 </div>
 
