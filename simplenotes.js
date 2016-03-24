@@ -25,7 +25,7 @@ function assignActions(reciever, type){
 		reciever.find("#delete-note").on("click", DeleteNote);
 		reciever.find("#note-title").bind("keyup change", textChanged);
 		reciever.find("#note-text").bind("keyup change", textChanged);
-	
+		reciever.find(".color-note").on("click", changeNoteColor);
 	}else if(type == 'checklist'){
 		reciever.find("#new-check").on("click", addCheck);
 	}else{
@@ -91,6 +91,20 @@ function DeleteNote(event){
 			$(this).remove();
 		});
 	});
+};
+
+
+//Change Note color
+function changeNoteColor(event){
+	var selectedColor = $(event.target).attr("data-color");
+	var $note = $(event.target).closest('.note');
+	$note.css('background-color', selectedColor);
+	$note.find('#note-title').css('background-color', selectedColor);
+	$note.find('#note-text').css('background-color', selectedColor);
+	
+
+	//TODO: Mejorar los colores y guardar en el json de la nota
+
 };
 
 

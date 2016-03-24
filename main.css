@@ -120,6 +120,44 @@ button:focus, input:focus, textarea:focus {
 }
 
 
+/* Color Picker */
+
+
+.color-picker{
+	width: 25px;
+	float: left;
+	margin-left: -25px;
+	overflow: hidden;
+}
+
+.color-note{
+	float : left;
+	height: 20px;
+	width: 20px;
+	margin: 0 2px 0 2px;
+	cursor: pointer;
+	margin-top: 2px;
+
+	position: relative;
+	margin-left: 25px;
+	transition: 0.5s;
+}
+
+.color-note:nth-child(1){ background-color: orange; }
+.color-note:nth-child(2){ background-color: green; }
+.color-note:nth-child(3){ background-color: red; }
+.color-note:nth-child(4){ background-color: violet; }
+.color-note:nth-child(5){ background-color: blue; }
+.color-note:nth-child(6){ background-color: skyblue; }
+
+#note-template:hover .color-note {
+    transition: 0.5s;
+     margin-left: 0;
+}
+
+
+
+
 /* Checklist Layout*/
 
 .checklist{
