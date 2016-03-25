@@ -153,7 +153,7 @@ $removeAllButton.click(function(){
 		callback: function(value) {
 			if(value){
 				storage.removeAllNotes(function(result){
-					//verificar result y hacer alguna animacion
+					// TODO: verificar result y hacer alguna animacion
 					$notesContainer.empty();
 					refreshNotes();	
 				});

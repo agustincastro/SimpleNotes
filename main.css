@@ -143,16 +143,16 @@ button:focus, input:focus, textarea:focus {
 	transition: 0.5s;
 }
 
-.color-note:nth-child(1){ background-color: orange; }
-.color-note:nth-child(2){ background-color: green; }
-.color-note:nth-child(3){ background-color: red; }
-.color-note:nth-child(4){ background-color: violet; }
-.color-note:nth-child(5){ background-color: blue; }
-.color-note:nth-child(6){ background-color: skyblue; }
+.color-note:nth-child(1){ background-color: #F2C500; } 
+.color-note:nth-child(2){ background-color: #809D0D; }
+.color-note:nth-child(3){ background-color: #E62B72; }
+.color-note:nth-child(4){ background-color: #8B2F94; }
+.color-note:nth-child(5){ background-color: #14589F; }
+.color-note:nth-child(6){ background-color: #288BBB; }
 
 #note-template:hover .color-note {
-    transition: 0.5s;
-     margin-left: 0;
+	transition: 0.5s;
+	margin-left: 0;
 }
 
 
