@@ -28,6 +28,7 @@ function assignActions(reciever, type){
 		reciever.find(".color-note").on("click", changeNoteColor);
 	}else if(type == 'checklist'){
 		reciever.find("#new-check").on("click", addCheck);
+		reciever.find(".check-input").on("click", crossOut);
 	}else{
 		console.log('c est fini');
 	}
@@ -107,10 +108,20 @@ function changeNoteColor(event){
 
 };
 
+//Crossout of todo check
+function crossOut(event){
+	if( $(this).is(':checked') ) {
+		$(event.target).siblings('#check-title').css('text-decoration','line-through');
+	}else{
+		$(event.target).siblings('#check-title').css('text-decoration','initial');
+	}
+};
+
 
 // Create new check in checklist
 function addCheck(event){
 	var check = $checklistTemplate.find('#check-container').clone();
+	check.find(".check-input").on("click", crossOut);
 	var html = $(event.target).parent();
 	html.find('#checklist-contaimer').append(check);
 };
