@@ -110,7 +110,6 @@ function changeNoteColor(event){
 	var noteId = $note.attr('data-id');
 	
 	storage.updateNoteColor(noteId, selectedColor);
-	//TODO: Mejorar los colores y guardar en el json de la nota
 
 };
 
