@@ -16,7 +16,7 @@ vex.defaultOptions.className = 'vex-theme-os'; // Initializes vex theme
 
 function ping(){
 	storage.holaMundo();
-}
+};
 
 
 // Sets the interactions of the different types of notes
@@ -54,15 +54,19 @@ function refreshNotes(){
 			noteTemplate.removeClass("invisible");
 			//Set actions
 			assignActions(noteTemplate, 'note');
-
 			var noteId = k;
 			var note = v;
-
 			if(noteId && noteId.length == 8){
 				noteTemplate.attr('data-id', noteId);
 			}
 			noteTemplate.find('#note-title').val(note['title']);
 			noteTemplate.find('#note-text').val(note['text']);
+
+			//Set corresponding note color
+			noteTemplate.css('background-color', note['color']);
+			noteTemplate.find('#note-title').css('background-color', note['color']);
+			noteTemplate.find('#note-text').css('background-color', note['color']);
+
 
 			$notesContainer.append(noteTemplate);
 		});
@@ -103,7 +107,9 @@ function changeNoteColor(event){
 	$note.find('#note-title').css('background-color', selectedColor);
 	$note.find('#note-text').css('background-color', selectedColor);
 	
-
+	var noteId = $note.attr('data-id');
+	
+	storage.updateNoteColor(noteId, selectedColor);
 	//TODO: Mejorar los colores y guardar en el json de la nota
 
 };
