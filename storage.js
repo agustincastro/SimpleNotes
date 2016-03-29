@@ -31,7 +31,7 @@ function storage(){
     			chrome.storage.sync.set({'notes': [ noteData ] }, function() {
     				console.log("First note created, id: " + noteId);
                     callbackFunction(noteId);
-    			});
+                });
     		}else{
     			//already have notes array initialied
     			var noteData = {};
@@ -89,6 +89,30 @@ function storage(){
             }
         });
     };    
+
+
+     //Private implementation of updateNoteColor
+     var update_note_color = function(noteId, color){
+
+        chrome.storage.sync.get('notes', function(data) {
+            if(!$.isEmptyObject(data)){
+                var noteData = {};
+                noteData[noteId] = { 'title':data['notes'][0][noteId]['title'], 
+                'text':data['notes'][0][noteId]['text'], 'color': color}
+
+                //deletes original object
+                delete data['notes'][0][noteId];
+                //merges two objects recursively
+                $.extend(true, data.notes, [ noteData ] );
+
+                chrome.storage.sync.set( data, function() {
+                    console.log("Color updated, id: " + noteId);
+                });    
+
+
+            }
+        });
+    };   
 
 
     //Private implementation of removeAllNotes
@@ -165,43 +189,50 @@ function storage(){
         catch(err){
           console.log("Exception: get_all_notes, Error: "+ err);
       };
-    };
+  };
 
 
-    this.updateNote = function(noteId, title, text){
-        try{
-            if((noteId && noteId.length == 8) && (title || text)) {
-                return update_note(noteId, title, text);
-            }
-        }   
-        catch(err){
-            console.log("Exception: get_note, Error: "+ err);
-        };
-        console.log("Error: getNote invalid noteId: "+ noteId);
-    };
-
-
-    this.removeNote = function(noteId, callbackFunction){
-        try{
-            if(noteId && noteId.length == 8){
-                remove_note(noteId, callbackFunction);
-            }
+  this.updateNote = function(noteId, title, text){
+    try{
+        if((noteId && noteId.length == 8) && (title || text)) {
+            return update_note(noteId, title, text);
         }
-        catch(err){
-          console.log("Exception: remove_note, Error: "+ err);
-        };
+    }   
+    catch(err){
+        console.log("Exception: get_note, Error: "+ err);
     };
+    console.log("Error: getNote invalid noteId: "+ noteId);
+};
 
-    this.removeAllNotes = function(callbackFunction){
-        try{
-            remove_all_notes(callbackFunction);
+
+this.removeNote = function(noteId, callbackFunction){
+    try{
+        if(noteId && noteId.length == 8){
+            remove_note(noteId, callbackFunction);
         }
-        catch(err){
-          console.log("Exception: remove_note, Error: "+ err);
-        };
+    }
+    catch(err){
+      console.log("Exception: remove_note, Error: "+ err);
+  };
+};
+
+this.removeAllNotes = function(callbackFunction){
+    try{
+        remove_all_notes(callbackFunction);
+    }
+    catch(err){
+      console.log("Exception: remove_note, Error: "+ err);
+  };
+};
+
+this.updateNoteColor = function(noteId, color){
+    try{
+        update_note_color(noteId, color);
+    }
+    catch(err){
+        console.log("Exception: update_note_color, Error: "+ err);
     };
-
-
+};
 
 
 };

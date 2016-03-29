@@ -18,7 +18,7 @@
 
 		<div id="left-container">
 			<button id="new-note" title="New note"></button>
-			<!-- <button id="new-checklist" title="New checklist"></button> -->
+			<button id="new-checklist" title="New checklist"></button>
 			<button id="reload" title="Reload"></button>
 			<button id="remove-all" title="Remove all"></button>
 			<button id="configuration" title ="Configuration"></button>
@@ -26,31 +26,51 @@
 	<!-- 
 	<hr> -->
 
+</div>
+
+<!-- TODO: Implementar timer -->
+
+<!--Base mote template -->
+<div id="note-template" class= "note invisible" data-id="">
+
+	<div class="color-picker">
+		<div class="color-note orange" data-color="#F2C500"></div>
+		<div class="color-note green" data-color="#809D0D"></div>
+		<div class="color-note red" data-color="#E62B72"></div>
+		<div class="color-note violet" data-color="#8B2F94"></div>
+		<div class="color-note blue" data-color="#14589F"></div>
+		<div class="color-note skyblue" data-color="#288BBB"></div>
+	</div>
+
+	<input id='note-title' type="text" class="title-input" placeholder="title..."></input>
+	<button id="delete-note" title ="Delete"></button>
+	<textarea id='note-text' placeholder="text..."></textarea>
+</div>
+
+<!-- Base Checklist template -->
+<div id="checklist-template" class= "checklist invisible" data-id="">
+	<div id="checklist-contaimer">
+		<div id="check-container">
+			<input type="checkbox" class="check-input"></input>
+			<input id='check-title' type="text" class="check-title" placeholder="To-do"></input>
+		</div>
 	</div>
 	
-	<!-- TODO: Implementar timer -->
-	<!-- TODO: Implementar checklist -->
-	
-	<!--Base mote template -->
-	<div id="note-template" class= "note invisible" data-id="">
-		<input id='note-title' type="text" class="title-input" placeholder="title..."></input>
-
-		<button id="delete-note" title ="Delete"></button>
-
-		<textarea id='note-text' placeholder="text..."></textarea>
-	</div>
+	<div id="new-check"></div>
+	<!-- <button id="delete-note" title ="Delete"></button> -->
+</div>
 
 
-	<div id="notes-container"></div>
-	
+<div id="notes-container"></div>
 
-	<div id="quote-container">
-		
-		<p></p>
 
-		<label></label>
+<div id="quote-container">
 
-	</div>
+	<p></p>
+
+	<label></label>
+
+</div>
 
 </body>
 </html>

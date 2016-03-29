@@ -91,7 +91,7 @@ button:focus, input:focus, textarea:focus {
 }
 
 #note-template:hover button{
- visibility:visible;
+	visibility:visible;
 }
 
 #delete-note{
@@ -116,7 +116,75 @@ button:focus, input:focus, textarea:focus {
 
 #note-template textarea{
 	height: 100px;
-	width: 80%;
+	width: 90%;
+}
+
+
+/* Color Picker */
+
+
+.color-picker{
+	width: 25px;
+	float: left;
+	margin-left: -25px;
+	overflow: hidden;
+}
+
+.color-note{
+	float : left;
+	height: 20px;
+	width: 20px;
+	margin: 0 2px 0 2px;
+	cursor: pointer;
+	margin-top: 2px;
+
+	position: relative;
+	margin-left: 25px;
+	transition: 0.5s;
+}
+
+.color-note:nth-child(1){ background-color: #F2C500; } 
+.color-note:nth-child(2){ background-color: #809D0D; }
+.color-note:nth-child(3){ background-color: #E62B72; }
+.color-note:nth-child(4){ background-color: #8B2F94; }
+.color-note:nth-child(5){ background-color: #14589F; }
+.color-note:nth-child(6){ background-color: #288BBB; }
+
+#note-template:hover .color-note {
+	transition: 0.5s;
+	margin-left: 0;
+}
+
+
+
+
+/* Checklist Layout*/
+
+.checklist{
+	background-color: #EEEEEE;
+	margin-top: 15px;
+	margin-right: auto;
+	margin-left: auto;
+	
+	width: 250px;
+}
+
+#checklist-template .check-input{
+	margin-left: 10px;
+}
+
+.check-title{
+	background-color: #EEEEEE;
+	border:none;
+	margin-top: 10px;
+	margin-left: 10px;
+}
+
+#new-check{  
+	background: url("images/plus-icon.png") no-repeat center;
+	height: 30px;
+	width: 100%;
+	background-size: 30px;
 }
 
 
