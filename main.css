@@ -137,8 +137,6 @@ button:focus, input:focus, textarea:focus {
 	margin: 0 2px 0 2px;
 	cursor: pointer;
 	margin-top: 2px;
-
-	position: relative;
 	margin-left: 25px;
 	transition: 0.5s;
 }
