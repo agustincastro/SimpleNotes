@@ -199,6 +199,7 @@ button:focus, input:focus, textarea:focus {
 	font-style: italic;
 	display: block;
 	text-align: right;
+	margin-right: 5px;
 }
 
 
