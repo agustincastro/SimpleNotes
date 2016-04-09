@@ -62,7 +62,8 @@ function storage(){
             }else{
                 //already have notes array initialied
                 var noteData = {};
-                noteData[noteId] = { 'title':title, 'text':text}
+                noteData[noteId] = { 'title':title, 'text':text, 
+                    'color': data['notes'][0][noteId]['color']}
                 //deletes original object
                 delete data['notes'][0][noteId];
                 //merges two objects recursively
