@@ -29,6 +29,7 @@ function assignActions(reciever, type){
 	}else if(type == 'checklist'){
 		reciever.find("#new-check").on("click", addCheck);
 		reciever.find(".check-input").on("click", crossOut);
+		reciever.find("#check-title").bind("keyup change", checkTextChanged);
 	}else{
 		console.log('c est fini');
 	}
@@ -73,6 +74,38 @@ function refreshNotes(){
 
 	});
 };
+
+//renders all checklists in chrome storage
+function refreshChecklists(){
+	storage.getAllChecklists(function(storedChecklists){
+		//Callback
+		$.each(storedChecklists, function(k, v) {
+			var checkTemplate = $checklistTemplate.clone();
+			checkTemplate.removeClass("invisible");
+			//Set actions
+			assignActions(checkTemplate, 'checklist');
+			var checkId = k;
+			var check = v;
+			if(checkId && checkId.length == 8){
+				checkTemplate.attr('data-id', checkId);
+			}
+
+			// Assign each individual check
+			$.each(check, function (key, data){	
+				if(key && key.length == 8){
+					checkTemplate.find('#check-container').attr('data-check-id',key);
+				}
+				checkTemplate.find('#check-title').val(data['title']);
+				//checkTemplate.find('#note-text').val(check['text']);
+			});
+
+			$notesContainer.append(checkTemplate);
+		});
+
+	});
+
+};
+
 
 //Update text of note
 function textChanged(event){
@@ -125,10 +158,16 @@ function crossOut(event){
 
 // Create new check in checklist
 function addCheck(event){
-	var check = $checklistTemplate.find('#check-container').clone();
-	check.find(".check-input").on("click", crossOut);
-	var html = $(event.target).parent();
-	html.find('#checklist-contaimer').append(check);
+	var checklistClone = $(event.target).parent();
+	var checkId = checklistClone.attr('data-id')
+	
+	storage.addCheck(checkId, function(checkItemId){
+		var check = $checklistTemplate.find('#check-container').clone();
+		check.attr('data-check-id', checkItemId);
+		check.find(".check-input").on("click", crossOut);
+		checklistClone.find('#checklist-container').append(check);
+	});
+
 };
 
 
@@ -136,13 +175,15 @@ function addCheck(event){
 //Load up notes and settings
 $(function() {
 	refreshNotes();
+	refreshChecklists();
 	refreshQuote();
 });
 
-//Reloads all notes .... agrega loader
+//Reloads all notes .... add loader
 $reloadButton.click(function(event){
 	$notesContainer.empty();
 	refreshNotes();
+	refreshChecklists();
 });
 
 //Create new note
@@ -163,7 +204,6 @@ $newNoteButton.click(function(event){
 
 // Delete all notes
 $removeAllButton.click(function(){
-	//Banzaiii
 	vex.dialog.confirm({
 		message: 'Are you sure you want to delete all notes?',
 		callback: function(value) {
@@ -185,15 +225,26 @@ $newCheckButton.click(function(event){
 	checkListTemplate.removeClass("invisible");
 	//Set actions
 	assignActions(checkListTemplate, 'checklist');
-	$notesContainer.append(checkListTemplate);
-	// storage.saveNote('', '', function(noteId){
-	// 	if(noteId && noteId.length == 8){
-	// 		noteTemplate.attr('data-id', noteId);
-	// 		$notesContainer.append(noteTemplate);
-	// 	}
-	// });
+	//$notesContainer.append(checkListTemplate);
+	storage.saveChecklist(function(checkId, firstItemId){
+		debugger;
+		if(checkId && checkId.length == 8){
+			checkListTemplate.attr('data-id', checkId);
+			checkListTemplate.find('#check-container').attr('data-check-id', firstItemId);
+			$notesContainer.append(checkListTemplate);
+		}
+	});
 });
 
+
+//Update checkItem text
+function checkTextChanged(event){
+	var html = $(event.target);
+	var checkId = html.closest('#checklist-template').attr('data-id'); 
+	var checkItemId = html.closest('#check-container').attr('data-check-id');
+	var text = html.parent().find('#check-title').val();
+	storage.updateCheckTitle(checkId, checkItemId, text); 
+};
 
 
 
