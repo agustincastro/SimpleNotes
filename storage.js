@@ -195,7 +195,7 @@ function storage() {
                 });
             }
         });
-};
+    };
 
 
      //Private implementation of updateNote
@@ -225,7 +225,31 @@ function storage() {
                 });
             }
         });
-}
+    }
+
+
+        var crossout_check_item = function(checkId, checkItemId, callbackFunction){
+            chrome.storage.sync.get('checklists', function(data) {
+                var checkData = {};
+                if(!$.isEmptyObject(data)){
+                    //get current value
+                    var checked = data['checklists'][0][checkId][checkItemId]['checked'];
+                    var currentTitle = data['checklists'][0][checkId][checkItemId]['title'];    
+                    checkData[checkId] = {};
+                    checkData[checkId][checkItemId] = { 'title':currentTitle, 'checked': !checked };
+
+                    //deletes original object
+                    delete data['checklists'][0][checkId][checkItemId];
+                    //merges two objects recursively
+                    $.extend(true, data.checklists, [ checkData ] );
+
+                    chrome.storage.sync.set( data, function() {
+                        console.log("Check updated, id: " + checkId);
+                        callbackFunction();
+                    });
+                }
+            });
+        };
 
 
         var add_check = function(checkId, callbackFunction){
@@ -386,6 +410,18 @@ catch(err){
 }
 
 };
+
+
+    this.crossOut = function(checkId, checkItemId, callbackFunction){
+       try{
+            if(checkId && checkId.length == 8 && checkItemId) {
+                crossout_check_item(checkId, checkItemId, callbackFunction);
+            }
+        }   
+        catch(err){
+            console.log("Exception: update_check_title, Error: "+ err);
+        }
+    };
 
 
 }

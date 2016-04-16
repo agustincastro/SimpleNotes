@@ -84,7 +84,6 @@ function refreshChecklists(){
 			var checkItemContainer = checkTemplate.find('#check-container').clone();
 			checkTemplate.removeClass("invisible");
 			//Set actions
-			assignActions(checkTemplate, 'checklist');
 			var checkId = k;
 			var check = v;
 			if(checkId && checkId.length == 8){
@@ -93,17 +92,33 @@ function refreshChecklists(){
 
 			// Assign each individual check
 			var checkItemsContainer = checkTemplate.find('#checklist-container');
+			//Removes first todo item inside the template
+			checkItemsContainer.children().empty();
+
+			var isChecked;
 			$.each(check, function (key, data){	
 				var checkItem = checkItemContainer.clone();
+				var checkInput = checkItem.find('.check-input');
+				var checkText = checkItem.find('#check-title');
 				if(key && key.length == 8){
 					checkItem.attr('data-check-id',key);
 				}
-				checkItem.find('#check-title').val(data['title']);
-				//checkTemplate.find('#note-text').val(check['text']);
+				checkText.val(data['title']);
+				checked = data['checked'];
+				
+				if(checked){
+					checkInput.prop('checked', true);
+					checkText.css('text-decoration','line-through');
+				}else{
+					checkInput.prop('checked', false);
+					checkText.css('text-decoration','initial');	
+				}
 				checkItemsContainer.append(checkItem);
 			});
 
 			$notesContainer.append(checkTemplate);
+			assignActions(checkTemplate, 'checklist');
+
 		});
 
 	});
@@ -152,10 +167,17 @@ function changeNoteColor(event){
 
 //Crossout of todo check
 function crossOut(event){
+	var target = $(event.target);
+	var checkId = target.closest('#checklist-template').attr('data-id'); 
+	var checkItemId = target.closest('#check-container').attr('data-check-id');
 	if( $(this).is(':checked') ) {
-		$(event.target).siblings('#check-title').css('text-decoration','line-through');
+		storage.crossOut(checkId, checkItemId, function(){
+			$(event.target).siblings('#check-title').css('text-decoration','line-through');
+		});
 	}else{
-		$(event.target).siblings('#check-title').css('text-decoration','initial');
+		storage.crossOut(checkId, checkItemId, function(){
+			$(event.target).siblings('#check-title').css('text-decoration','initial');
+		});
 	}
 };
 
