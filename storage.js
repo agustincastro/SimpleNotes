@@ -231,18 +231,23 @@ function storage() {
         var add_check = function(checkId, callbackFunction){
           var checkItemId = generateID();
           chrome.storage.sync.get('checklists', function(data) {
-           var checkData = {};
-            checkData[checkId] = {};
-            checkData[checkId][checkItemId] = { 'title':'', 'checked':false};
+        //   var checkData = {};
+        //    checkData[checkId] = {};
+        //    checkData[checkId][checkItemId] = { 'title':'', 'checked':false};
+           var checkData = {'title':'', 'checked':false};
            if($.isEmptyObject(data)){
                         //set notes first value
-                        chrome.storage.sync.set({'checklists': [ checkData ] }, function() {
+                        var check = {};
+                        check[checkId] = {};
+                        check[checkId][checkItemId] = checkData;
+                        chrome.storage.sync.set({'checklists': check }, function() {
                             console.log("First check created in update, id: " + checkId);
                             callbackFunction(checkItemId);
                         });
                     }else{
                         //already have notes array initialied
-                        $.extend(true, data.checklists[checkId],checkData );
+                        data.checklists[0][checkId][checkItemId] = checkData;
+                       // $.extend(true, data.checklists[checkId], checkData );
 
                         chrome.storage.sync.set( data, function() {
                             console.log("Check updated, id: " + checkId);

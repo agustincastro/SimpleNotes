@@ -81,6 +81,7 @@ function refreshChecklists(){
 		//Callback
 		$.each(storedChecklists, function(k, v) {
 			var checkTemplate = $checklistTemplate.clone();
+			var checkItemContainer = checkTemplate.find('#check-container').clone();
 			checkTemplate.removeClass("invisible");
 			//Set actions
 			assignActions(checkTemplate, 'checklist');
@@ -91,12 +92,15 @@ function refreshChecklists(){
 			}
 
 			// Assign each individual check
+			var checkItemsContainer = checkTemplate.find('#checklist-container');
 			$.each(check, function (key, data){	
+				var checkItem = checkItemContainer.clone();
 				if(key && key.length == 8){
-					checkTemplate.find('#check-container').attr('data-check-id',key);
+					checkItem.attr('data-check-id',key);
 				}
-				checkTemplate.find('#check-title').val(data['title']);
+				checkItem.find('#check-title').val(data['title']);
 				//checkTemplate.find('#note-text').val(check['text']);
+				checkItemsContainer.append(checkItem);
 			});
 
 			$notesContainer.append(checkTemplate);
