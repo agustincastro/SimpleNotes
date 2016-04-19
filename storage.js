@@ -198,6 +198,22 @@ function storage() {
     };
 
 
+    //Private implementation of removeChecklist
+        //Private implementation of removeNote
+    var remove_checklist = function(checkId, callbackFunction){
+        chrome.storage.sync.get('checklists', function(data) {
+            if(!$.isEmptyObject(data)){
+                //deletes the note
+                delete data['checklists'][0][checkId];
+                chrome.storage.sync.set( data, function() {
+                    console.log("Checklist deleted, id: " + checkId);
+                    callbackFunction();
+                });
+            }
+        });
+    };    
+
+
      //Private implementation of updateNote
      var update_check_title = function(checkId, checkItemId ,title){
         chrome.storage.sync.get('checklists', function(data) {
@@ -411,7 +427,6 @@ catch(err){
 
 };
 
-
     this.crossOut = function(checkId, checkItemId, callbackFunction){
        try{
             if(checkId && checkId.length == 8 && checkItemId) {
@@ -421,6 +436,18 @@ catch(err){
         catch(err){
             console.log("Exception: update_check_title, Error: "+ err);
         }
+    };
+
+
+    this.removeChecklist = function(checkId, callbackFunction){
+        try{
+            if(checkId && checkId.length == 8){
+                remove_checklist(checkId, callbackFunction);
+            }
+        }
+        catch(err){
+            console.log("Exception: remove_note, Error: "+ err);
+        }        
     };
 
 

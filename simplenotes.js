@@ -30,10 +30,10 @@ function assignActions(reciever, type){
 		reciever.find("#new-check").on("click", addCheck);
 		reciever.find(".check-input").on("click", crossOut);
 		reciever.find("#check-title").bind("keyup change", checkTextChanged);
+		reciever.find(".delete").on("click", deleteChecklist);
 	}else{
 		console.log('c est fini');
 	}
-
 };
 
 
@@ -60,8 +60,8 @@ function refreshNotes(){
 			if(noteId && noteId.length == 8){
 				noteTemplate.attr('data-id', noteId);
 			}
-			noteTemplate.find('#note-title').val(note['title']);
-			noteTemplate.find('#note-text').val(note['text']);
+			var noteTitle = noteTemplate.find('#note-title');
+			var noteText = noteTemplate.find('#note-text');
 
 			//Set corresponding note color
 			noteTemplate.css('background-color', note['color']);
@@ -115,14 +115,10 @@ function refreshChecklists(){
 				}
 				checkItemsContainer.append(checkItem);
 			});
-
 			$notesContainer.append(checkTemplate);
 			assignActions(checkTemplate, 'checklist');
-
 		});
-
 	});
-
 };
 
 
@@ -193,7 +189,18 @@ function addCheck(event){
 		check.find(".check-input").on("click", crossOut);
 		checklistClone.find('#checklist-container').append(check);
 	});
+};
 
+
+//Removes selected checklist
+function deleteChecklist(event){
+	var html = $(event.target);
+	var checkId = html.closest('#checklist-template').attr('data-id');
+	storage.removeChecklist(checkId, function(){
+		html.closest('#checklist-template').slideUp(200, function(){
+			$(this).remove();
+		});
+	});
 };
 
 
