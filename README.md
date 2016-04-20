@@ -3,13 +3,13 @@
 
 
 
-###Simple notes is a light weight chrome extension to store ideas and to-do lists inside the browser and keep them handy.
+###Simple notes is a lightweight chrome extension to store ideas and to-do lists inside the browser and keep them handy.
 
 
 Persistence is done using chrome storage Appi which is asynchronous by nature so the way persistence is implemented provides a good example and learning exercise for anyone interested in learning more about callbacks, promises and Sync/Async programming overall.
 	
 
-Work in progress, i highly appreciate any collaboration or opinion
+Work in progress, i highly appreciate any collaboration or input
 
 Agustin
 
