@@ -22,7 +22,8 @@ function ping(){
 // Sets the interactions of the different types of notes
 function assignActions(reciever, type){
 	if(type == 'note'){
-		reciever.find("#delete-note").on("click", DeleteNote);
+	//	reciever.find("#delete-note").on("click", DeleteNote);
+		reciever.find(".delete").on("click", DeleteNote);
 		reciever.find("#note-title").bind("keyup change", textChanged);
 		reciever.find("#note-text").bind("keyup change", textChanged);
 		reciever.find(".color-note").on("click", changeNoteColor);
@@ -62,7 +63,8 @@ function refreshNotes(){
 			}
 			var noteTitle = noteTemplate.find('#note-title');
 			var noteText = noteTemplate.find('#note-text');
-
+			noteTitle.val(note['title']);
+			noteText.val(note['text']);
 			//Set corresponding note color
 			noteTemplate.css('background-color', note['color']);
 			noteTemplate.find('#note-title').css('background-color', note['color']);
@@ -136,10 +138,10 @@ function textChanged(event){
 //Delete note
 function DeleteNote(event){
 	var html = $(event.target);
-	var noteId = html.parent().attr('data-id');	
+	var noteId = html.closest('#note-template').attr('data-id');
 
 	storage.removeNote(noteId, function(){
-		html.parent().slideUp(200, function()
+		html.closest('#note-template').slideUp(200, function()
 		{
 			$(this).remove();
 		});
