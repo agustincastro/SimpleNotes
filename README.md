@@ -13,7 +13,8 @@ Work in progress, i highly appreciate any collaboration or input
 
 Agustin
 
-
-
+<p align="center">
+<img src="Images/example.png" alt="Screenshot" width="500px" height="600px"/>
+</p></br>
 >“Very often, gleams of light come in a few minutes' sleeplessness, in a second
 >perhaps; you must fix them. To entrust them to the relaxed brain is like writing on water; there is every chance that on the morrow there will be no slightest trace left of any happening.”  <cite>Antonin Sertillanges</cite> 
