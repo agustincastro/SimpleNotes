@@ -1,287 +1,257 @@
-.title{ color: #F59D00; }
-
-body{ 
-	background-color: #FFFFDE; 
-	width: 350px;
+.title {
+    color: #F59D00;
 }
-
-.logo{ 
-	height: 65px; 
-	margin-left: auto;
-	margin-right: auto;
-	display: block;
+body {
+    background-color: #FFFFDE;
+    width: 350px;
 }
-
-
+.logo {
+    height: 65px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
 /* Buttons */
 
-.header{
-	position: fixed;
-	top: 0;
-	background-color: #FFFFDE;
-	width: 95%;
-	height: 110px;
+.header {
+    position: fixed;
+    top: 0;
+    background-color: #FFFFDE;
+    width: 95%;
+    height: 110px;
 }
-
 #left-container button {
-	height: 30px;
-	width: 30px;
-	background-repeat: no-repeat;
-	border:none;
-	background-size: 100%;
+    height: 30px;
+    width: 30px;
+    background-repeat: no-repeat;
+    border: none;
+    background-size: 100%;
 }
-
-button:focus, input:focus, textarea:focus {
-	outline:none;
-	box-shadow:none;
+button:focus,
+input:focus,
+textarea:focus {
+    outline: none;
+    box-shadow: none;
 }
-
-#new-note{
-	background-image: url("images/new-note-icon.png");
-	background-color: transparent;
+#new-note {
+    background-image: url("images/new-note-icon.png");
+    background-color: transparent;
 }
-
-#new-checklist{
-	background-image: url("images/new-checklist-icon.png");
-	background-color: transparent;
+#new-checklist {
+    background-image: url("images/new-checklist-icon.png");
+    background-color: transparent;
 }
-
-#reload{
-	background-image: url("images/reload-icon.png");
-	background-color: transparent;
+#reload {
+    background-image: url("images/reload-icon.png");
+    background-color: transparent;
 }
-
-#configuration{
-	background-image: url("images/gear-icon.png");
-	background-color: transparent;	
-	float: right;
+#configuration {
+    background-image: url("images/gear-icon.png");
+    background-color: transparent;
+    float: right;
 }
-
-#remove-all{
-	background-image: url("images/bin-icon.png");
-	background-color: transparent;
+#remove-all {
+    background-image: url("images/bin-icon.png");
+    background-color: transparent;
 }
-
-
 /* Note Layout */
 
-#notes-container{
-	margin-top: 115px;
+#notes-container {
+    margin-top: 115px;
 }
-
-.note{
-	background-color: #F2C500;
-	margin-top: 15px;
-	margin-right: auto;
-	margin-left: auto;
-	height: 150px;
-	width: 250px;
+.note {
+    background-color: #F2C500;
+    margin-top: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    height: 150px;
+    width: 250px;
 }
-
 #note-template button {
-	height: 24px;
-	width: 20px;
-	float: right;
-	margin-top: 5px;
-	margin-right: 5px;
-	background-repeat: no-repeat;
-	border: none;
-	background-size: 100%;
-	visibility: hidden;
+    height: 24px;
+    width: 20px;
+    float: right;
+    margin-top: 5px;
+    margin-right: 5px;
+    background-repeat: no-repeat;
+    border: none;
+    background-size: 100%;
+    visibility: hidden;
 }
-
-#note-template:hover button{
-	visibility:visible;
+#note-template:hover button {
+    visibility: visible;
 }
-
-#delete-note{
-	background-image: url("images/remove-icon.png");
-	background-color: transparent;
+#delete-note {
+    background-image: url("images/remove-icon.png");
+    background-color: transparent;
 }
-
-.invisible{
-	display: none;
+.invisible {
+    display: none;
 }
-
-.title-input, #note-template textarea{
-	background-color: #F2C500;
-	border:none;
-	margin-top: 10px;
-	margin-left: 10px;
+.title-input,
+#note-template textarea {
+    background-color: #F2C500;
+    border: none;
+    margin-top: 10px;
+    margin-left: 10px;
 }
-
-.title-input{
-	width: 90%;
+.title-input {
+    width: 90%;
 }
-
-#note-template textarea{
-	height: 100px;
-	width: 90%;
+#note-template textarea {
+    height: 100px;
+    width: 90%;
 }
-
-
 /* Color Picker */
 
-
-.color-picker{
-	width: 25px;
-	float: left;
-	margin-left: -25px;
-	overflow: hidden;
+.color-picker {
+    width: 25px;
+    float: left;
+    margin-left: -25px;
+    overflow: hidden;
 }
-
-.color-note{
-	float : left;
-	height: 20px;
-	width: 20px;
-	margin: 0 2px 0 2px;
-	cursor: pointer;
-	margin-top: 2px;
-	margin-left: 25px;
-	transition: 0.5s;
+.color-note {
+    float: left;
+    height: 20px;
+    width: 20px;
+    margin: 0 2px 0 2px;
+    cursor: pointer;
+    margin-top: 2px;
+    margin-left: 25px;
+    transition: 0.5s;
 }
-
-.color-note:nth-child(1){ background-color: #F2C500; } 
-.color-note:nth-child(2){ background-color: #809D0D; }
-.color-note:nth-child(3){ background-color: #E62B72; }
-.color-note:nth-child(4){ background-color: #8B2F94; }
-.color-note:nth-child(5){ background-color: #14589F; }
-.color-note:nth-child(6){ background-color: #288BBB; }
-
+.color-note:nth-child(1) {
+    background-color: #F2C500;
+}
+.color-note:nth-child(2) {
+    background-color: #809D0D;
+}
+.color-note:nth-child(3) {
+    background-color: #E62B72;
+}
+.color-note:nth-child(4) {
+    background-color: #8B2F94;
+}
+.color-note:nth-child(5) {
+    background-color: #14589F;
+}
+.color-note:nth-child(6) {
+    background-color: #288BBB;
+}
 #note-template:hover .color-note {
-	transition: 0.5s;
-	margin-left: 0;
+    transition: 0.5s;
+    margin-left: 0;
 }
 /* Note right Menu */
-.right-menu{
-	width: 25px;
-	float: right;
-	margin-right: -25px;
-	overflow: hidden;
-}
 
-.note-menu-item{
-	height: 20px;
-	width: 20px;
- 	cursor: pointer;
-	margin-top: 2px;
-	margin-left: -25px;
-	transition: 0.5s;
-	background-image: url("images/remove-icon.png");
-	background-repeat: no-repeat;
-	background-size: 100%;
-	background-color: transparent;
+.right-menu {
+    width: 25px;
+    float: right;
+    margin-right: -25px;
+    overflow: hidden;
 }
-
+.note-menu-item {
+    height: 20px;
+    width: 20px;
+    cursor: pointer;
+    margin-top: 2px;
+    margin-left: -25px;
+    transition: 0.5s;
+    background-image: url("images/remove-icon.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-color: transparent;
+}
 #note-template:hover .note-menu-item {
-	transition: 0.5s;
-	margin-left: 5px;
+    transition: 0.5s;
+    margin-left: 5px;
 }
-
-
 /* Checklist Menu */
 
-.checklist-menu{
-	width: 25px;
-	float: right;
-	margin-right: -25px;
-	overflow: hidden;
+.checklist-menu {
+    width: 25px;
+    float: right;
+    margin-right: -25px;
+    overflow: hidden;
 }
-
-.checklist-menu-item{
-	height: 20px;
-	width: 20px;
- 	cursor: pointer;
-	margin-top: 2px;
-	margin-left: -25px;
-	transition: 0.5s;
-	background-image: url("images/remove-icon.png");
-	background-repeat: no-repeat;
-	background-size: 100%;
-	background-color: transparent;
+.checklist-menu-item {
+    height: 20px;
+    width: 20px;
+    cursor: pointer;
+    margin-top: 2px;
+    margin-left: -25px;
+    transition: 0.5s;
+    background-image: url("images/remove-icon.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-color: transparent;
 }
-
 #checklist-template:hover .checklist-menu-item {
-	transition: 0.5s;
-	margin-left: 5px;
+    transition: 0.5s;
+    margin-left: 5px;
 }
-
-
-
 /* Checklist Layout*/
 
-.checklist{
-	background-color: #EEEEEE;
-	margin-top: 15px;
-	margin-right: auto;
-	margin-left: auto;
-	width: 250px;
+.checklist {
+    background-color: #EEEEEE;
+    margin-top: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    width: 250px;
 }
-
-#checklist-template .check-input{
-	margin-left: 10px;
+#checklist-template .check-input {
+    margin-left: 10px;
 }
-
-.check-title{
-	background-color: #EEEEEE;
-	border:none;
-	margin-top: 10px;
-	margin-left: 10px;
+.check-title {
+    background-color: #EEEEEE;
+    border: none;
+    margin-top: 10px;
+    margin-left: 10px;
 }
-
-#new-check{  
-	background: url("images/plus-icon.png") no-repeat center;
-	height: 30px;
-	width: 100%;
-	background-size: 30px;
+#new-check {
+    background: url("images/plus-icon.png") no-repeat center;
+    height: 30px;
+    width: 100%;
+    background-size: 30px;
 }
-
-
 /* Quotes */
 
-#quote-container p{
-	padding: 5px;
-	font-family: sans-serif;
-	text-align: justify;
-	font-size: small;
+#quote-container p {
+    padding: 5px;
+    font-family: sans-serif;
+    text-align: justify;
+    font-size: small;
 }
-
-#quote-container label{
-	font-style: italic;
-	display: block;
-	text-align: right;
-	margin-right: 5px;
+#quote-container label {
+    font-style: italic;
+    display: block;
+    text-align: right;
+    margin-right: 5px;
 }
-
-
-
 /*  Vex dialogs */
 
-.vex-content{
-	width: 300px !important;
-	margin-left: auto !important;
-	margin-right: auto !important;
+.vex-content {
+    width: 300px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
 }
-
-
 /* GENERAL MISC */
 
 ::-webkit-input-placeholder {
-	color: black;
-	font-style: italic;
+    color: black;
+    font-style: italic;
 }
-
-:-moz-placeholder { /* Firefox 18- */
-	color: black;  
-	font-style: italic;
+:-moz-placeholder {
+    /* Firefox 18- */
+    color: black;
+    font-style: italic;
 }
-
-::-moz-placeholder {  /* Firefox 19+ */
-	color: black;  
-	font-style: italic;
+::-moz-placeholder {
+    /* Firefox 19+ */
+    color: black;
+    font-style: italic;
 }
-
-:-ms-input-placeholder {  
-	color: black;  
-	font-style: italic;
+:-ms-input-placeholder {
+    color: black;
+    font-style: italic;
 }

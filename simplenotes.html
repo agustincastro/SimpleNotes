@@ -1,84 +1,83 @@
 <!doctype html>
 <html>
-<head>
-	<title>Simple Notes</title>
 
-	<meta charset="UTF-8" >
-	
-	<!-- Le styles -->
-	<link rel="stylesheet" type="text/css" href="main.css">
-	<link rel="stylesheet" href="styles/vex.css" />
-	<link rel="stylesheet" href="styles/vex-theme-os.css" />
+<head>
+    <title>Simple Notes</title>
+
+    <meta charset="UTF-8">
+
+    <!-- Le styles -->
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <link rel="stylesheet" href="styles/vex.css" />
+    <link rel="stylesheet" href="styles/vex-theme-os.css" />
 
 
 </head>
+
 <body>
-	<div class="header " style= 'position:fixed'>
-		<div> <img class="logo" src="images/header.png" alt="Simple notes"> </div>
+    <div class="header " style='position:fixed'>
+        <div>
+            <img class="logo" src="images/header.png" alt="Simple notes">
+        </div>
 
-		<div id="left-container">
-			<button id="new-note" title="New note"></button>
-			<button id="new-checklist" title="New checklist"></button>
-			<button id="reload" title="Reload"></button>
-			<button id="remove-all" title="Remove all"></button>
-			<button id="configuration" title ="Configuration"></button>
-		</div>
-	<!-- 
-	<hr> -->
+        <div id="left-container">
+            <button id="new-note" title="New note"></button>
+            <button id="new-checklist" title="New checklist"></button>
+            <button id="reload" title="Reload"></button>
+            <button id="remove-all" title="Remove all"></button>
+            <button id="configuration" title="Configuration"></button>
+        </div>
 
-</div>
+    </div>
 
-<!-- TODO: Implementar timer -->
+    <!--Base mote template -->
+    <div id="note-template" class="note invisible" data-id="">
 
-<!--Base mote template -->
-<div id="note-template" class= "note invisible" data-id="">
+        <div class="color-picker">
+            <div class="color-note orange" data-color="#F2C500"></div>
+            <div class="color-note green" data-color="#809D0D"></div>
+            <div class="color-note red" data-color="#E62B72"></div>
+            <div class="color-note violet" data-color="#8B2F94"></div>
+            <div class="color-note blue" data-color="#14589F"></div>
+            <div class="color-note skyblue" data-color="#288BBB"></div>
+        </div>
+        <div class="right-menu">
+            <div class="note-menu-item delete"></div>
+        </div>
 
-	<div class="color-picker">
-		<div class="color-note orange" data-color="#F2C500"></div>
-		<div class="color-note green" data-color="#809D0D"></div>
-		<div class="color-note red" data-color="#E62B72"></div>
-		<div class="color-note violet" data-color="#8B2F94"></div>
-		<div class="color-note blue" data-color="#14589F"></div>
-		<div class="color-note skyblue" data-color="#288BBB"></div>
-	</div>
-	<div class="right-menu">
-		<div class="note-menu-item delete"></div>
-	</div>
-
-	<input id='note-title' type="text" class="title-input" placeholder="title..."></input>
-	<!-- <button id="delete-note" title ="Delete"></button> -->
-	<textarea id='note-text' placeholder="text..."></textarea>
-</div>
+        <input id='note-title' type="text" class="title-input" placeholder="title..."></input>
+        <textarea id='note-text' placeholder="text..."></textarea>
+    </div>
 
 
-<!-- Base Checklist template -->
-<div id="checklist-template" class= "checklist invisible" data-id=""> 
+    <!-- Base Checklist template -->
+    <div id="checklist-template" class="checklist invisible" data-id="">
 
-	<div class="checklist-menu">
-		<div class="checklist-menu-item delete"></div>
-	</div>
+        <div class="checklist-menu">
+            <div class="checklist-menu-item delete"></div>
+        </div>
 
-	<div id="checklist-container">
-		<div id="check-container" data-check-id="">
-			<input type="checkbox" class="check-input"></input>
-			<input id='check-title' type="text" class="check-title" placeholder="To-do"></input>
-		</div>
-	</div>
-	
-	<div id="new-check"></div>
-	<!-- <button id="delete-note" title ="Delete"></button> -->
-</div>
+        <div id="checklist-container">
+            <div id="check-container" data-check-id="">
+                <input type="checkbox" class="check-input"></input>
+                <input id='check-title' type="text" class="check-title" placeholder="To-do"></input>
+            </div>
+        </div>
 
-
-<div id="notes-container"></div>
+        <div id="new-check"></div>
+    </div>
 
 
-<div id="quote-container">
-	<p></p>
-	<label></label>
-</div>
+    <div id="notes-container"></div>
+
+
+    <div id="quote-container">
+        <p></p>
+        <label></label>
+    </div>
 
 </body>
+
 </html>
 
 
