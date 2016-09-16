@@ -1,7 +1,5 @@
 
-![Simple Notes](Images/header.png)
-
-
+#Simple notes
 
 ###Simple notes is a lightweight chrome extension to store ideas and to-do lists inside the browser and keep them handy.
 
